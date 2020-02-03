@@ -11,11 +11,11 @@ export class App extends Component {
   }
   addCity = (cityName) => {
     console.log(cityName);
-    fetch(`http://api.weatherstack.com/current?access_key=b44bfa51b8f0d4a1adbf0d1111fe89a3&query=${cityName}`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=df4c1079550f4c8d5d8f14a31aacf223`)
       .then(res => res.json())
       .then(newCity => {
-        if (newCity.location) {
-          newCity.id = uuid.v4();
+        if (newCity.coord) {
+          newCity._id = uuid.v4();
           this.setState({ city: [...this.state.city, newCity] });
           console.log(this.state.city);
         } else {
@@ -25,9 +25,9 @@ export class App extends Component {
       });
   }
 
-  deleteCity = (id) => {
+  deleteCity = (_id) => {
     this.setState({
-      city: [...this.state.city.filter(city => { return city.id !== id })]
+      city: [...this.state.city.filter(city => { return city._id !== _id })]
     })
   }
 

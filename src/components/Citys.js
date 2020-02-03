@@ -5,7 +5,7 @@ import Forecast from './Forecast'
 export class Citys extends Component {
     render() {
         return this.props.city.map(city => (
-            <Forecast key={city.id} city={city} deleteCity={this.props.deleteCity} />
+            <Forecast key={city._id} city={city} deleteCity={this.props.deleteCity} />
         ))
     }
 }
